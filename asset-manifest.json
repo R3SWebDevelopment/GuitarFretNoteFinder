@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GuitarFretNoteFinder/static/css/main.c6c00411.css",
+    "main.js": "/GuitarFretNoteFinder/static/js/main.947078b2.js",
+    "index.html": "/GuitarFretNoteFinder/index.html",
+    "main.c6c00411.css.map": "/GuitarFretNoteFinder/static/css/main.c6c00411.css.map",
+    "main.947078b2.js.map": "/GuitarFretNoteFinder/static/js/main.947078b2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6c00411.css",
+    "static/js/main.947078b2.js"
+  ]
+}
