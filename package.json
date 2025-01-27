@@ -1,0 +1,47 @@
+{
+  "name": "guitar-fret-note-finder",
+  "version": "1.0.0",
+  "homepage": "https://R3SWebDevelopment.github.io/GuitarFretNoteFinder",
+  "description": "An interactive app to help learn guitar notes by finding the correct fret for a randomly selected note and string.",
+  "main": "src/index.jsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "guitar",
+    "note-finder",
+    "fretboard",
+    "react",
+    "tonejs",
+    "music"
+  ],
+  "author": "Ricardo Tercero Solis <ricardo.tercero@r3s.com.mx>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^3.0.1",
+    "tone": "^14.8.37"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.4",
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.4.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

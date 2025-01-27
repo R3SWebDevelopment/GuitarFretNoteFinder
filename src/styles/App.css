@@ -1,0 +1,15 @@
+/* Timer */
+.timer {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Correct and wrong feedback */
+.feedback-label.correct {
+    color: green;
+}
+
+.feedback-label.wrong {
+    color: red;
+}
