@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./styles/App.css";
-import * as Tone from "tone";
+import * as Tone from 'tone';
 
 const App = () => {
     const notes = ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#"];
