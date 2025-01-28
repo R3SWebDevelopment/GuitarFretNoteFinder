@@ -5,15 +5,18 @@ import * as Tone from 'tone';
 const App = () => {
     const notes = ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#"];
     const stringTuning = ["E", "B", "G", "D", "A", "E"]; // Standard tuning
-    const levels = {1: 10, 2: 5, 3: 2}; // Levels and their corresponding time limits
+    const levels = {1: 12, 2: 8, 3: 4}; // Levels and their corresponding time limits
 
     const [randomNote, setRandomNote] = useState("");
     const [randomString, setRandomString] = useState(0); // String index (0-5)
     const [correctFret, setCorrectFret] = useState(null);
     const [feedback, setFeedback] = useState("");
+    const [isPausedDisabled, setIsPausedDisabled] = useState(false);
     const [isPaused, setIsPaused] = useState(true);
+    const [isNoteDisplayed, setIsNoteDisplayed] = useState(false);
     const [level, setLevel] = useState(1); // Default level is 1
     const [timeLeft, setTimeLeft] = useState(levels[level]);
+    const [stringNotes, setStringNotes] = useState([]);
 
     useEffect(() => {
         if (!isPaused) {
@@ -37,24 +40,49 @@ const App = () => {
         setCorrectFret(fret);
         setFeedback("");
         setTimeLeft(levels[level]);
+        buildStringNotes(baseNote);
+    };
+
+    const buildStringNotes = (baseNote) => {
+        let stringNotes = [];
+        let index = notes.indexOf(baseNote);
+        for(let i = 0; i < 12; i++){
+            stringNotes.push(notes[index]);
+            if(index === 11){
+                index = 0;
+            }else{
+                index += 1;
+            }
+        }
+        setStringNotes(stringNotes)
     };
 
     const handleFretClick = (fret) => {
         if (isPaused) return;
+        setIsPaused(true);
+        setIsPausedDisabled(true);
+        setIsNoteDisplayed(true);
 
         if (fret === correctFret) {
             setFeedback("Correct!");
             playNote();
-            setTimeout(() => generateRandomNoteAndString(), 2000); // Wait 2 seconds before generating a new challenge
         } else {
             setFeedback("Wrong!");
             playSound("wrong");
         }
+
+        setTimeout(() => {
+            setIsNoteDisplayed(false);
+            setIsPausedDisabled(false);
+            setIsPaused(false);
+            generateRandomNoteAndString();
+        }, 2000); // Wait 2 seconds before generating a new challenge
     };
 
     const playNote = () => {
-        const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease(randomNote, "8n");
+        // TODO: Implement sound
+        //const synth = new Tone.Synth().toDestination();
+        //synth.triggerAttackRelease(randomNote, "8n");
     };
 
     const playSound = (type) => {
@@ -65,9 +93,11 @@ const App = () => {
     };
 
     const handleTimeout = () => {
+        setIsPausedDisabled(true);
         setFeedback("Wrong!");
+        setIsPaused(true);
         playSound("wrong");
-        setTimeout(() => generateRandomNoteAndString(), 2000); // Wait 2 seconds before generating a new challenge
+        setTimeout(() => {setIsPausedDisabled(false);setIsPaused(false);generateRandomNoteAndString();}, 2000); // Wait 2 seconds before generating a new challenge
     };
 
     const togglePause = () => {
@@ -77,6 +107,7 @@ const App = () => {
         } else {
             setIsPaused(true);
         }
+        setIsPausedDisabled(false);
     };
 
     const handleLevelChange = (newLevel) => {
@@ -110,8 +141,8 @@ const App = () => {
             <div className="fretboard">
                 <div className="container">
                     {Array.from({length: 12}, (_, i) => (
-                        <button key={i} className="fret-button" onClick={() => handleFretClick(i)}>
-                            {i}
+                        <button key={i} disabled={isPaused} className="fret-button" onClick={() => handleFretClick(i)}>
+                            {isNoteDisplayed ? stringNotes[i] : i}
                         </button>
                     ))}
                 </div>
@@ -122,6 +153,7 @@ const App = () => {
                 <div className="level-buttons">
                     <button
                         className="level-button"
+                        disabled={!isPaused}
                         onClick={() => handleLevelChange(1)}
                         style={{backgroundColor: level === 1 ? "#777" : "#555"}}
                     >
@@ -129,6 +161,7 @@ const App = () => {
                     </button>
                     <button
                         className="level-button"
+                        disabled={!isPaused}
                         onClick={() => handleLevelChange(2)}
                         style={{backgroundColor: level === 2 ? "#777" : "#555"}}
                     >
@@ -136,13 +169,14 @@ const App = () => {
                     </button>
                     <button
                         className="level-button"
+                        disabled={!isPaused}
                         onClick={() => handleLevelChange(3)}
                         style={{backgroundColor: level === 3 ? "#777" : "#555"}}
                     >
                         Hard
                     </button>
                 </div>
-                <button className="pause-button" onClick={togglePause}>
+                <button className="pause-button" onClick={togglePause} disabled={isPausedDisabled}>
                     {isPaused ? "Resume" : "Pause"}
                 </button>
             </div>
