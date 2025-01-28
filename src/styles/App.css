@@ -115,6 +115,10 @@ html, body, #root {
     justify-content: center;
 }
 
+.fretboard button{
+    font-weight: bolder;
+}
+
 .fretboard > .container{
     position: relative;
 
