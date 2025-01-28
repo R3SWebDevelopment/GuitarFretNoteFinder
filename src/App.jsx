@@ -91,13 +91,14 @@ const App = () => {
         <div className="app-container">
             {/* Top Section */}
             <div className="top-section">
-                <div className="label note-label">{randomNote || "--"}</div>
+
+                <div className="label note-label"><span>Note</span>{randomNote || "--"}</div>
                 <div
                     className={`label feedback-label ${feedback === "Correct!" ? "correct" : "wrong"}`}
                 >
                     {feedback}
                 </div>
-                <div className="label string-label">String {randomString + 1 || "--"}</div>
+                <div className="label string-label"><span>String</span> {randomString + 1 || "--"}</div>
             </div>
 
             {/* Timer */}
@@ -107,11 +108,13 @@ const App = () => {
 
             {/* Middle Section (Fretboard) */}
             <div className="fretboard">
-                {Array.from({length: 12}, (_, i) => (
-                    <button key={i} className="fret-button" onClick={() => handleFretClick(i)}>
-                        {i}
-                    </button>
-                ))}
+                <div className="container">
+                    {Array.from({length: 12}, (_, i) => (
+                        <button key={i} className="fret-button" onClick={() => handleFretClick(i)}>
+                            {i}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             {/* Bottom Section */}
