@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/GuitarFretNoteFinder/static/css/main.c6c00411.css",
-    "main.js": "/GuitarFretNoteFinder/static/js/main.947078b2.js",
+    "main.css": "/GuitarFretNoteFinder/static/css/main.90ee7b86.css",
+    "main.js": "/GuitarFretNoteFinder/static/js/main.616f30ed.js",
     "index.html": "/GuitarFretNoteFinder/index.html",
-    "main.c6c00411.css.map": "/GuitarFretNoteFinder/static/css/main.c6c00411.css.map",
-    "main.947078b2.js.map": "/GuitarFretNoteFinder/static/js/main.947078b2.js.map"
+    "main.90ee7b86.css.map": "/GuitarFretNoteFinder/static/css/main.90ee7b86.css.map",
+    "main.616f30ed.js.map": "/GuitarFretNoteFinder/static/js/main.616f30ed.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6c00411.css",
-    "static/js/main.947078b2.js"
+    "static/css/main.90ee7b86.css",
+    "static/js/main.616f30ed.js"
   ]
 }
